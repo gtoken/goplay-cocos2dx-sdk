@@ -51,7 +51,7 @@ For a full listing of the source code sample, please refer to the sample code in
   3. [Exchange](#exchange)
   4. [GameStat](#game_stat)
 
-### API Calls
+### <a name='api_calls'></a>API Calls
 #### <a name='login'></a>Login
 ```c++
 void GoPlaySdk::login(string userName, string password, Guid gameId)
@@ -77,3 +77,18 @@ Input
 | ------------- |---------------| -------------------|
 | username      | string        | Required parameter |
 | password      | string        | Required parameter |
+
+#### <a name='register'></a>Register
+#### <a name='get_profile'></a>Get Profile
+#### <a name='edit_profile'></a>Edit Profile
+#### <a name='get_progress'></a>Get Progress
+#### <a name='save_progress'></a>Save Progress
+#### <a name='update_game_stats'></a>Update Game Stats
+#### <a name='get_unfulfilled_exchanges'></a>Get Unfulfilled Exchanges
+#### <a name='fulfill_exchange'></a>Fulfill Exchange
+#### <a name='reject_exchange'></a>Reject Exchange
+### <a name='supporting_classes'></a>Supporting Classes
+#### <a name='session'></a>Session
+#### <a name='userprofile'></a>UserProfile
+#### <a name='exchange'></a>Exchange
+#### <a name='game_stat'></a>GameStat
