@@ -33,8 +33,26 @@ GoPlaySDK:: GoPlaySdk::GetInstance()->onLogin = [&](GToken::IResult * r) {
 For a full listing of the source code sample, please refer to the sample code in `samples` folder.
 
 ## API References
+### Table of contents
+1. [API Calls](#api_calls)
+  1. [Login](#login)
+  2. [Register](#register)
+  3. [Get Profile](#get_profile)
+  4. [Edit Profile](#edit_profile)
+  5. [Get Progress](#get_progress)
+  6. [Save Progress](#save_progress)
+  7. [Update Game Stats](#update_game_stats)
+  8. [Get Unfulfilled Exchanges](#get_unfulfilled_exchanges)
+  9. [Fulfill Exchange](#fulfill_exchange)
+  10. [Reject Exchange](#reject_exchange)
+2. [Supporting Classes](#supporting_classes)
+  1. [Session](#session)
+  2. [UserProfile](#userprofile)
+  3. [Exchange](#exchange)
+  4. [GameStat](#game_stat)
+
 ### API Calls
-#### Login
+#### <a name='login'></a>Login
 ```c++
 void GoPlaySdk::login(string userName, string password, Guid gameId)
 void GoPlaySdk::login(SocialPlatforms platform, string token, Guid gameId);
@@ -52,6 +70,7 @@ GoPlaySDK:: GoPlaySdk::GetInstance()->onLogin = [&](GoPlaySDK::IResult * r) {
 
 GoPlaySDK:: GoPlaySdk::GetInstance()->login(username,password GoPlaySDK::Guid(Id)); 
 ```
+
 Input
 
 | Paramter      | Type          | Notes              |
