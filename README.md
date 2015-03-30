@@ -53,6 +53,7 @@ GoPlaySDK:: GoPlaySdk::GetInstance()->onLogin = [&](GoPlaySDK::IResult * r) {
 GoPlaySDK:: GoPlaySdk::GetInstance()->login(username,password GoPlaySDK::Guid(Id)); 
 ```
 Input
+
 | Paramter      | Type          | Notes              |
 | ------------- |---------------| -------------------|
 | username      | string        | Required parameter |
