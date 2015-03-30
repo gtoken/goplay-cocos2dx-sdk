@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<VariablesViewState
+   version = "1.0">
+   <ContextStates>
+      <ContextState
+         contextName = "GToken::Result::tryParse(GToken::WWW*):Results.cpp">
+         <PersistentStrings>
+            <PersistentString
+               value = "www-&gt;getBuffer()">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "std::__1::__function::__func&lt;UiLogin::initWith()::$_0::operator()(AvaButton*) const::&apos;lambda&apos;(int, std::__1::basic_string&lt;char, std::__1::char_traits&lt;char&gt;, std::__1::allocator&lt;char&gt; &gt;&amp;)::operator()(int, std::__1::basic_string&lt;char, std::__1::char_traits&lt;char&gt;, std::__1::allocator&lt;char&gt; &gt;&amp;) const::&apos;lambda&apos;(GToken::IResult*)::operator()(GToken::IResult*) const::&apos;lambda&apos;(AvaFrame*)::operator()(AvaFrame*) const::&apos;lambda&apos;(GToken::IResult*), std::__1::allocator&lt;UiLogin::initWith()::$_0::operator()(AvaButton*) const::&apos;lambda&apos;(int, std::__1::basic_string&lt;char, std::__1::char_traits&lt;char&gt;, std::__1::allocator&lt;char&gt; &gt;&amp;)::operator()(int, std::__1::basic_string&lt;char, std::__1::char_traits&lt;char&gt;, std::__1::allocator&lt;char&gt; &gt;&amp;) const::&apos;lambda&apos;(GToken::IResult*)::operator()(GToken::IResult*) const::&apos;lambda&apos;(AvaFrame*)::operator()(AvaFrame*) const::&apos;lambda&apos;(GToken::IResult*)&gt;, void (GToken::IResult*)&gt;::operator()(GToken::IResult*&amp;&amp;):functional">
+         <PersistentStrings>
+            <PersistentString
+               value = "r">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "GToken::WWW::request(std::__1::basic_string&lt;char, std::__1::char_traits&lt;char&gt;, std::__1::allocator&lt;char&gt; &gt;, GToken::WWWForm, std::__1::function&lt;void (GToken::WWW*)&gt;):Extensions.cpp">
+         <PersistentStrings>
+            <PersistentString
+               value = "f.getPost()">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "GToken::GTSdk::registerAsync(std::__1::basic_string&lt;char, std::__1::char_traits&lt;char&gt;, std::__1::allocator&lt;char&gt; &gt;, std::__1::basic_string&lt;char, std::__1::char_traits&lt;char&gt;, std::__1::allocator&lt;char&gt; &gt;, GToken::Guid, std::__1::basic_string&lt;char, std::__1::char_traits&lt;char&gt;, std::__1::allocator&lt;char&gt; &gt;, std::__1::basic_string&lt;char, std::__1::char_traits&lt;char&gt;, std::__1::allocator&lt;char&gt; &gt;, GToken::Gender, std::__1::basic_string&lt;char, std::__1::char_traits&lt;char&gt;, std::__1::allocator&lt;char&gt; &gt;)::$_0::operator()(GToken::WWW*) const:GTSdk.cpp">
+      </ContextState>
+      <ContextState
+         contextName = "GToken::GTSdk::loginAsync(GToken::SocialPlatforms, std::__1::basic_string&lt;char, std::__1::char_traits&lt;char&gt;, std::__1::allocator&lt;char&gt; &gt;, GToken::Guid)::$_2::operator()(GToken::WWW*) const:GTSdk.cpp">
+         <PersistentStrings>
+            <PersistentString
+               value = "www">
+            </PersistentString>
+            <PersistentString
+               value = "platform">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "GToken::WWW::request(std::__1::basic_string&lt;char, std::__1::char_traits&lt;char&gt;, std::__1::allocator&lt;char&gt; &gt;, GToken::WWWForm, std::__1::function&lt;void (GToken::WWW*)&gt;)::$_0::operator()(cocos2d::network::HttpClient*, cocos2d::network::HttpResponse*) const:Extensions.cpp">
+         <PersistentStrings>
+            <PersistentString
+               value = "_error">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "UiLogin::initWith()::$_0::operator()(AvaButton*) const::&apos;lambda&apos;(int, std::__1::basic_string&lt;char, std::__1::char_traits&lt;char&gt;, std::__1::allocator&lt;char&gt; &gt;&amp;)::operator()(int, std::__1::basic_string&lt;char, std::__1::char_traits&lt;char&gt;, std::__1::allocator&lt;char&gt; &gt;&amp;) const::&apos;lambda&apos;(GToken::IResult*)::operator()(GToken::IResult*) const::&apos;lambda&apos;(AvaFrame*)::operator()(AvaFrame*) const::&apos;lambda&apos;(GToken::IResult*)::operator()(GToken::IResult*) const:UiLogin.cpp">
+      </ContextState>
+      <ContextState
+         contextName = "GToken::GTSdk::registerAsync(std::__1::basic_string&lt;char, std::__1::char_traits&lt;char&gt;, std::__1::allocator&lt;char&gt; &gt;, std::__1::basic_string&lt;char, std::__1::char_traits&lt;char&gt;, std::__1::allocator&lt;char&gt; &gt;, GToken::Guid, std::__1::basic_string&lt;char, std::__1::char_traits&lt;char&gt;, std::__1::allocator&lt;char&gt; &gt;, std::__1::basic_string&lt;char, std::__1::char_traits&lt;char&gt;, std::__1::allocator&lt;char&gt; &gt;, GToken::Gender, std::__1::basic_string&lt;char, std::__1::char_traits&lt;char&gt;, std::__1::allocator&lt;char&gt; &gt;)::$_0::operator()(GToken::WWW*) const::&apos;lambda&apos;(GToken::IResult*)::operator()(GToken::IResult*) const:GTSdk.cpp">
+         <PersistentStrings>
+            <PersistentString
+               value = "_requireOAuthData">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+   </ContextStates>
+</VariablesViewState>
