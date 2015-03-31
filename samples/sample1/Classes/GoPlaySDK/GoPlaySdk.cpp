@@ -14,7 +14,6 @@ NS_GTOKEN_BEGIN
 
 void GoPlaySdk::registerWith(string userName,
                          string password,
-                         Guid gameId,
                          string email,
                          string nickName,
                          Gender gender,
@@ -22,7 +21,7 @@ void GoPlaySdk::registerWith(string userName,
 {
     if (onRegister != nullptr)
     {
-        registerAsync(userName, password, gameId, email, nickName, gender, referal);
+        registerAsync(userName, password, email, nickName, gender, referal);
     }
 }
 
@@ -30,7 +29,6 @@ void GoPlaySdk::registerWith(string userName,
 
 void GoPlaySdk::registerAsync(string userName,
                           string password,
-                          Guid gameId,
                           string email,
                           string nickName,
                           Gender gender,
@@ -39,7 +37,7 @@ void GoPlaySdk::registerAsync(string userName,
     WWWForm f = WWWForm();
     f.addFieldLowerCase(Constants::FIELD_USERNAME, userName);
     f.addFieldLowerCase(Constants::FIELD_PASSWORD, password);
-    f.addField(Constants::FIELD_GAME_ID, gameId.ToString());
+    f.addField(Constants::FIELD_GAME_ID, Guid(GAME_ID).ToString());
     f.addField(Constants::FIELD_GENDER, GenderToString[gender]);
     
     f.addFieldIfValid(Constants::FIELD_EMAIL, email);
@@ -47,7 +45,7 @@ void GoPlaySdk::registerAsync(string userName,
     f.addFieldIfValid(Constants::FIELD_REFERRAL_CODE, referal);
     
     string url = UrlExtension::ToURL(URLs::ACTION_REGISTER, _useLiveServer);
-    WWW::CREATE( url, f, [&, gameId](WWW* www){
+    WWW::CREATE( url, f, [&, Guid(GAME_ID)](WWW* www){
         // Compose the Result //
         RegisterResult * result = new RegisterResult();
         result->tryParse(www);
@@ -57,7 +55,7 @@ void GoPlaySdk::registerAsync(string userName,
         // Need to connect this user with Social platform ? //
         if (result->getSucceeded() && _requireOAuthData != nullptr)
         {   
-            bindOauthAsync(gameId, _requireOAuthData, [&](IResult * r)
+            bindOauthAsync(_requireOAuthData, [&](IResult * r)
             {
                 if (onRegister)
                 {
@@ -76,24 +74,34 @@ void GoPlaySdk::registerAsync(string userName,
     });
 }
 
+void GoPlaySdk::logout()
+{
+    logoutAsync();
+}
 
-void GoPlaySdk::login(string userName, string password, Guid gameId)
+
+void GoPlaySdk::logoutAsync(){
+    _session = nullptr;
+    
+}
+
+void GoPlaySdk::login(string userName, string password)
 {
     if (onLogin)
     {
-        loginAsync(userName, password, gameId);
+        loginAsync(userName, password);
     }
 }
 
 
-void GoPlaySdk::loginAsync(string userName, string password, Guid gameId){
+void GoPlaySdk::loginAsync(string userName, string password){
     WWWForm f = WWWForm();
     f.addFieldLowerCase(Constants::FIELD_USERNAME, userName);
     f.addFieldLowerCase(Constants::FIELD_PASSWORD, password);
-    f.addField(Constants::FIELD_GAME_ID, gameId.ToString());
+    f.addField(Constants::FIELD_GAME_ID, Guid(GAME_ID).ToString());
     string url = UrlExtension::ToURL(URLs::ACTION_LOGIN, _useLiveServer);
     
-    WWW::CREATE(url, f, [&, gameId](WWW* www){
+    WWW::CREATE(url, f, [&, Guid(GAME_ID)](WWW* www){
         // Compose the Result //
         LoginResult * result = new LoginResult();
         result->tryParse(www);
@@ -104,7 +112,7 @@ void GoPlaySdk::loginAsync(string userName, string password, Guid gameId){
         if (result->getSucceeded() && _requireOAuthData)
         {
             // Perform Oauth-Connect //
-            bindOauthAsync(gameId, _requireOAuthData, [&](IResult * r){
+            bindOauthAsync(_requireOAuthData, [&](IResult * r){
                 if (onLogin) {
                     onLogin(r);
                 }
@@ -122,20 +130,20 @@ void GoPlaySdk::loginAsync(string userName, string password, Guid gameId){
 
 //Login with third party such as FaceBook
 
-void GoPlaySdk::login(SocialPlatforms platform, string token, Guid gameId)
+void GoPlaySdk::login(SocialPlatforms platform, string token)
 {
     if (onLogin)
     {
-        loginAsync(platform, token, gameId);
+        loginAsync(platform, token);
     }
 }
 
-void GoPlaySdk::loginAsync(SocialPlatforms platform, string token, Guid gameId)
+void GoPlaySdk::loginAsync(SocialPlatforms platform, string token)
 {
     WWWForm f = WWWForm();
     f.addField(Constants::FIELD_SERVICE, SocialPlatformsToString[platform]);
     f.addField(Constants::FIELD_TOKEN, token);
-    f.addField(Constants::FIELD_GAME_ID, gameId.ToString());
+    f.addField(Constants::FIELD_GAME_ID, Guid(GAME_ID).ToString());
     
     string url = UrlExtension::ToURL(URLs::ACTION_LOGIN_OAUTH, _useLiveServer);
     WWW::CREATE( url, f, [&, platform, token](WWW* www){
@@ -174,11 +182,11 @@ void GoPlaySdk::loginAsync(SocialPlatforms platform, string token, Guid gameId)
 }
 
 
-void GoPlaySdk::bindOauthAsync(Guid gameId, OAuthDataObject * oData, ResponseHandler callBack)
+void GoPlaySdk::bindOauthAsync( OAuthDataObject * oData, ResponseHandler callBack)
 {
     WWWForm f = WWWForm();
     f.addField(Constants::FIELD_SESSION, getSession());
-    f.addField(Constants::FIELD_GAME_ID, gameId.ToString());
+    f.addField(Constants::FIELD_GAME_ID, Guid(GAME_ID).ToString());
     f.addField(Constants::FIELD_SERVICE, SocialPlatformsToString[oData->getPlatform()]);
     f.addFieldIfValid(Constants::FIELD_TOKEN, oData->getToken());
     
@@ -195,20 +203,20 @@ void GoPlaySdk::bindOauthAsync(Guid gameId, OAuthDataObject * oData, ResponseHan
 
 //GetProfile
 
-void GoPlaySdk::getProfile(Guid gameId)
+void GoPlaySdk::getProfile()
 {
     if (onGetProfile && !_session.empty())
     {
-        getProfileAsync(gameId);
+        getProfileAsync();
     }
 }
 
 
-void GoPlaySdk::getProfileAsync(Guid gameId)
+void GoPlaySdk::getProfileAsync()
 {
     WWWForm f = WWWForm();
     f.addField(Constants::FIELD_SESSION, _session);
-    f.addField(Constants::FIELD_GAME_ID, gameId.ToString());
+    f.addField(Constants::FIELD_GAME_ID, Guid(GAME_ID).ToString());
     
     string url = UrlExtension::ToURL(URLs::ACTION_GET_PROFILE, _useLiveServer);
     
@@ -226,20 +234,20 @@ void GoPlaySdk::getProfileAsync(Guid gameId)
 }
 
 
-void GoPlaySdk::editProfile(Guid gameId, string email, string nickName, Gender gender )
+void GoPlaySdk::editProfile(string email, string nickName, Gender gender )
 {
     if (onEditProfile && !_session.empty())
     {
-        editProfileAsync(gameId, email, nickName, gender);
+        editProfileAsync(email, nickName, gender);
     }
 }
 
 
-void GoPlaySdk::editProfileAsync(Guid gameId, string email, string nickName, Gender gender)
+void GoPlaySdk::editProfileAsync(string email, string nickName, Gender gender)
 {
     WWWForm f = WWWForm();
     f.addField(Constants::FIELD_SESSION, _session);
-    f.addField(Constants::FIELD_GAME_ID, gameId.ToString());
+    f.addField(Constants::FIELD_GAME_ID, Guid(GAME_ID).ToString());
     
     f.addFieldIfValid(Constants::FIELD_EMAIL, email);
     f.addFieldIfValid(Constants::FIELD_NICKNAME, nickName);
@@ -263,20 +271,20 @@ void GoPlaySdk::editProfileAsync(Guid gameId, string email, string nickName, Gen
 }
 
 
-void GoPlaySdk::getProgress(Guid gameId, bool sendData)
+void GoPlaySdk::getProgress(bool sendData)
 {
     if (onGetProgress && !_session.empty())
     {
-        getProgressAsync(gameId, sendData);
+        getProgressAsync(sendData);
     }
 }
 
 
-void GoPlaySdk::getProgressAsync(Guid gameId, bool sendData)
+void GoPlaySdk::getProgressAsync(bool sendData)
 {
     WWWForm f = WWWForm();
     f.addField(Constants::FIELD_SESSION, _session);
-    f.addField(Constants::FIELD_GAME_ID, gameId.ToString());
+    f.addField(Constants::FIELD_GAME_ID, Guid(GAME_ID).ToString());
     f.addField(Constants::FIELD_SEND_DATA, btoa(sendData)); // TODO: Test this bool value //
     
     string url = UrlExtension::ToURL(URLs::ACTION_GET_PROGRESS, _useLiveServer);
@@ -294,19 +302,19 @@ void GoPlaySdk::getProgressAsync(Guid gameId, bool sendData)
 }
 
 //SaveProgress
-void GoPlaySdk::saveProgress(Guid gameId, string data, string meta)
+void GoPlaySdk::saveProgress(string data, string meta)
 {
     if (onSaveProgress && !_session.empty())
     {
-        saveProgressAsync(gameId, data, meta);
+        saveProgressAsync(data, meta);
     }
 }
 
-void GoPlaySdk::saveProgressAsync(Guid gameId, string data, string meta)
+void GoPlaySdk::saveProgressAsync(string data, string meta)
 {
     WWWForm f = WWWForm();
     f.addField(Constants::FIELD_SESSION, _session);
-    f.addField(Constants::FIELD_GAME_ID, gameId.ToString());
+    f.addField(Constants::FIELD_GAME_ID, Guid(GAME_ID).ToString());
     f.addField(Constants::FIELD_DATA, data);
     f.addFieldIfValid(Constants::FIELD_META, meta);
     
@@ -325,21 +333,21 @@ void GoPlaySdk::saveProgressAsync(Guid gameId, string data, string meta)
 }
 
 //Update Game Stats
-void GoPlaySdk::updateGameStats(Guid gameId, const GameStats& stats)
+void GoPlaySdk::updateGameStats(const GameStats& stats)
 {
     if (onUpdateGameStats && !_session.empty())
     {
-        updateGameStatsAsync(gameId, stats);
+        updateGameStatsAsync(stats);
     }
 }
 
 
 
-void GoPlaySdk::updateGameStatsAsync(Guid gameId, const GameStats& starts)
+void GoPlaySdk::updateGameStatsAsync(const GameStats& starts)
 {
     WWWForm f = WWWForm();
     f.addField(Constants::FIELD_SESSION, _session);
-    f.addField(Constants::FIELD_GAME_ID, gameId.ToString());
+    f.addField(Constants::FIELD_GAME_ID, Guid(GAME_ID).ToString());
     string startsJson = starts.ToJson();
     f.addField(Constants::FIELD_STATS, startsJson);
     
@@ -359,19 +367,19 @@ void GoPlaySdk::updateGameStatsAsync(Guid gameId, const GameStats& starts)
 
 //Get Unfullfilled Exchanges
 
-void GoPlaySdk::getUnFullFilledExchanges(Guid gameId)
+void GoPlaySdk::getUnFullFilledExchanges()
 {
     if (onGetUnFullFilledExchanges && !_session.empty())
     {
-        getUnFullFilledExchangesAsync(gameId);
+        getUnFullFilledExchangesAsync();
     }
 }
 
-void GoPlaySdk::getUnFullFilledExchangesAsync(Guid gameId)
+void GoPlaySdk::getUnFullFilledExchangesAsync()
 {
     WWWForm f = WWWForm();
     f.addField(Constants::FIELD_SESSION, _session);
-    f.addField(Constants::FIELD_GAME_ID, gameId.ToString());
+    f.addField(Constants::FIELD_GAME_ID, Guid(GAME_ID).ToString());
     
     string url = UrlExtension::ToURL(URLs::ACTION_GET_UNFULLFILLED_EXCHANGE, _useLiveServer);
     
@@ -388,20 +396,20 @@ void GoPlaySdk::getUnFullFilledExchangesAsync(Guid gameId)
 }
 
 //Fullfilled Exchanges
-void GoPlaySdk::fullFillExchange(Guid gameId, string transactionId)
+void GoPlaySdk::fullFillExchange(string transactionId)
 {
     if (onFullFillExchange && !_session.empty())
     {
-        fullFillExchangeAsync(gameId, transactionId);
+        fullFillExchangeAsync(transactionId);
     }
 }
 
 
-void GoPlaySdk::fullFillExchangeAsync(Guid gameId, string transactionId)
+void GoPlaySdk::fullFillExchangeAsync(string transactionId)
 {
     WWWForm f = WWWForm();
     f.addField(Constants::FIELD_SESSION, _session);
-    f.addField(Constants::FIELD_GAME_ID, gameId.ToString());
+    f.addField(Constants::FIELD_GAME_ID, Guid(GAME_ID).ToString());
     f.addField(Constants::FIELD_TRANSACTION_ID, transactionId);
     
     string url = UrlExtension::ToURL(URLs::ACTION_FULLFILL_EXCHANGE, _useLiveServer);
@@ -420,19 +428,19 @@ void GoPlaySdk::fullFillExchangeAsync(Guid gameId, string transactionId)
 
 
 //Reject Exchanges
-void GoPlaySdk::rejectExchange(Guid gameId, string transactionId)
+void GoPlaySdk::rejectExchange(string transactionId)
 {
     if (onRejectExchange && !_session.empty())
     {
-        rejectExchangeAsync(gameId, transactionId);
+        rejectExchangeAsync( transactionId);
     }
 }
 
-void GoPlaySdk::rejectExchangeAsync(Guid gameId, string transactionId)
+void GoPlaySdk::rejectExchangeAsync(string transactionId)
 {
     WWWForm f = WWWForm();
     f.addField(Constants::FIELD_SESSION, _session);
-    f.addField(Constants::FIELD_GAME_ID, gameId.ToString());
+    f.addField(Constants::FIELD_GAME_ID, Guid(GAME_ID).ToString());
     f.addField(Constants::FIELD_TRANSACTION_ID, transactionId);
     
     string url = UrlExtension::ToURL(URLs::ACTION_REJECT_EXCHANGE, _useLiveServer);
@@ -451,19 +459,19 @@ void GoPlaySdk::rejectExchangeAsync(Guid gameId, string transactionId)
 
 
 //end--Reject exchange----
-void GoPlaySdk::updateExternalExchange(Guid gameId, Guid transactionId, string exchangeOptionIdentifier)
+void GoPlaySdk::updateExternalExchange(Guid transactionId, string exchangeOptionIdentifier)
 {
     if (onUpdateExternalExchange && !_session.empty())
     {
-        updateExternalExchangeAsync(gameId, transactionId, exchangeOptionIdentifier);
+        updateExternalExchangeAsync(transactionId, exchangeOptionIdentifier);
     }
 }
 
-void GoPlaySdk::updateExternalExchangeAsync(Guid gameId, Guid transactionId, string exchangeOptionIdentifier){
+void GoPlaySdk::updateExternalExchangeAsync(Guid transactionId, string exchangeOptionIdentifier){
     
     WWWForm f = WWWForm();
     f.addField(Constants::FIELD_SESSION, _session);
-    f.addField(Constants::FIELD_GAME_ID, gameId.ToString());
+    f.addField(Constants::FIELD_GAME_ID, Guid(GAME_ID).ToString());
     f.addField(Constants::FIELD_TRANSACTION_ID, transactionId.ToString());
     f.addField(Constants::FIELD_EXCHANGE_OPTION_IDENTIFIER, exchangeOptionIdentifier);
     
@@ -481,20 +489,20 @@ void GoPlaySdk::updateExternalExchangeAsync(Guid gameId, Guid transactionId, str
     });
 }
 
-void GoPlaySdk::unBindOauth(SocialPlatforms platform, string token, Guid gameId){
+void GoPlaySdk::unBindOauth(SocialPlatforms platform, string token){
     if (!_session.empty())
     {
-        unBindOauthAsync(platform, token, gameId);
+        unBindOauthAsync(platform, token);
     }
 }
 
 
-void GoPlaySdk::unBindOauthAsync(SocialPlatforms platform, string token, Guid gameId){
+void GoPlaySdk::unBindOauthAsync(SocialPlatforms platform, string token){
     WWWForm f = WWWForm();
     f.addField(Constants::FIELD_SESSION, _session);
     f.addField(Constants::FIELD_SERVICE, SocialPlatformsToString[platform]);
     f.addField(Constants::FIELD_TOKEN, token);
-    f.addField(Constants::FIELD_GAME_ID, gameId.ToString());
+    f.addField(Constants::FIELD_GAME_ID, Guid(GAME_ID).ToString());
     
     string url = UrlExtension::ToURL(URLs::ACTION_UNBIND_OAUTH, _useLiveServer);
     WWW::CREATE( url, f, [&, platform, token](WWW* www){

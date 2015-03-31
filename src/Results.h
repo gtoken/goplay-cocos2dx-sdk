@@ -56,9 +56,7 @@ public:
     SET_GET(Gender, _gender, Gender, Gender::Male)
     SET_GET(Vip, _vipStatus, VipStatus, Vip::Null)
     SET_GET(string, _countryCode, CountryCode, "")
-    SET_GET(decimal, _goPlayToken, GoPlayToken, 0)
-    SET_GET(decimal, _freeGoPlayToken, FreeGoPlayToken, 0)
-    SET_GET(decimal, _balance, Balance, 0)
+    SET_GET(decimal, _goPlayToken, GoPlayToken, 0)    
     SET_GET(decimal, _freeBalance, FreeBalance, 0)
     
     static UserProfile Create(const JSONObject& json);
@@ -88,7 +86,6 @@ public:
     SET_GET(ExchangeOptionTypes, _exchangeType, ExchangeType, ExchangeOptionTypes::Credit)
     SET_GET(string, _exchangeOptionId, ExchangeOptionId, "")
     SET_GET(decimal, _goPlayTokenValue, GoPlayTokenValue, 0)
-    SET_GET(decimal, _tokenValue, TokenValue, 0)
     SET_GET(int, _quantity, Quantity, 0)
     SET_GET(bool, _isFree, IsFree, 0)
 public:

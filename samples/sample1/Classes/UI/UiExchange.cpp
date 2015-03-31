@@ -56,6 +56,7 @@ void UiExchange::initWith(){
     this->setContentSize(Director::getInstance()->getVisibleSize());
     this->createBt("", 3.0f, this->getContentSize().height - 3,
                    [&](AvaButton* bt){
+                       GoPlaySDK::GoPlaySdk::GetInstance()->logout();
                        this->removeFromParent();
                        UiLogin * mUiLogin = new UiLogin();
                        mUiLogin->initWith();
@@ -81,7 +82,7 @@ void UiExchange::initWith(){
                            
                        };
                        this->increaseLoading();
-                       GoPlaySDK::GoPlaySdk::GetInstance()->getProfile(GAME_ID);
+                       GoPlaySDK::GoPlaySdk::GetInstance()->getProfile();
                    });
     
     this->createBt("get-unfulfilled", 100.0f + 170, this->getContentSize().height - 10,
@@ -114,7 +115,7 @@ void UiExchange::initWith(){
                            
                        };
                        this->increaseLoading();
-                       GoPlaySDK::GoPlaySdk::GetInstance()->getUnFullFilledExchanges(GAME_ID);
+                       GoPlaySDK::GoPlaySdk::GetInstance()->getUnFullFilledExchanges();
                    });
     
     this->createBt("fulfill", 100.0f + 170 * 2, this->getContentSize().height - 10,
@@ -178,7 +179,7 @@ void UiExchange::initWith(){
                                            };
                                            this->increaseLoading();
 
-                                           GoPlaySDK::GoPlaySdk::GetInstance()->fullFillExchange(GAME_ID, content);
+                                           GoPlaySDK::GoPlaySdk::GetInstance()->fullFillExchange(content);
                                        });
                    });
     
@@ -258,7 +259,7 @@ void UiExchange::initWith(){
                                                }
                                            };
                                            this->increaseLoading();
-                                           GoPlaySDK::GoPlaySdk::GetInstance()->updateExternalExchange(GAME_ID, content.c_str(), content2.c_str());
+                                           GoPlaySDK::GoPlaySdk::GetInstance()->updateExternalExchange(content.c_str(), content2.c_str());
                                        });
                    });
     
@@ -271,8 +272,8 @@ void UiExchange::initWith(){
                        this->setDebugString("");
                    
                        GoPlaySDK::GoPlaySdk::GetInstance()->unBindOauth(GoPlaySDK::GoPlaySdk::GetInstance()->getRequireOAuthData()->getPlatform(),
-                                                                     GoPlaySDK::GoPlaySdk::GetInstance()->getRequireOAuthData()->getToken(),
-                                                                     GAME_ID);
+                                                                     GoPlaySDK::GoPlaySdk::GetInstance()->getRequireOAuthData()->getToken()
+                                                                     );
                        
                    });
 }

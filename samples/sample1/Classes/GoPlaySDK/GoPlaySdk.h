@@ -32,7 +32,6 @@ private:
     // Events //
 public:
     ResponseHandler onLogin = nullptr;
-    ResponseHandler onLogOut = nullptr;
     ResponseHandler onRegister = nullptr;
     ResponseHandler onGetProfile = nullptr;
     ResponseHandler onEditProfile = nullptr;
@@ -46,93 +45,99 @@ public:
     
     // Supported Operations //
 public:
-    void registerWith(string userName, string password, Guid gameId, string email = "", string nickName = "", Gender gender = Gender::Other, string referal = "");
+    void registerWith(string userName, string password, string email = "", string nickName = "", Gender gender = Gender::Other, string referal = "");
     
 private:
-    void registerAsync(string userName, string password, Guid gameId, string email = "", string nickName = "", Gender gender = Gender::Other, string referal = "");
-    
+    void registerAsync(string userName, string password, string email = "", string nickName = "", Gender gender = Gender::Other, string referal = "");
+
 public:
-    void login(string userName, string password, Guid gameId);
+    void logout();
     
 private:
-    void loginAsync(string userName, string password, Guid gameId);
+    void logoutAsync();
+
+public:
+    void login(string userName, string password);
+    
+private:
+    void loginAsync(string userName, string password);
     
     //Login with third party such as FaceBook
 public:
-    void login(SocialPlatforms platform, string token, Guid gameId);
+    void login(SocialPlatforms platform, string token);
     
 private:
-    void loginAsync(SocialPlatforms platform, string token, Guid gameId);
+    void loginAsync(SocialPlatforms platform, string token);
     
 private:
-    void bindOauthAsync(Guid gameId, OAuthDataObject * oData, ResponseHandler callBack);
+    void bindOauthAsync(OAuthDataObject * oData, ResponseHandler callBack);
     
     //GetProfile
 public:
-    void getProfile(Guid gameId);
+    void getProfile();
     
 private:
-    void getProfileAsync(Guid gameId);
+    void getProfileAsync();
     
 public:
-    void editProfile(Guid gameId, string email = "", string nickName = "", Gender gender = Gender::Other );
+    void editProfile(string email = "", string nickName = "", Gender gender = Gender::Other );
     
 private:
-    void editProfileAsync(Guid gameId, string email = "", string nickName = "", Gender gender = Gender::Other);
+    void editProfileAsync(string email = "", string nickName = "", Gender gender = Gender::Other);
     
 public:
-    void getProgress(Guid gameId, bool sendData);
+    void getProgress(bool sendData);
     
 private:
-    void getProgressAsync(Guid gameId, bool sendData);
+    void getProgressAsync(bool sendData);
     
     //SaveProgress
 public:
-    void saveProgress(Guid gameId, string data, string meta = "");
+    void saveProgress(string data, string meta = "");
     
 private:
-    void saveProgressAsync(Guid gameId, string data, string meta = "");
+    void saveProgressAsync( string data, string meta = "");
     
     //Update Game Stats
 public:
-    void updateGameStats(Guid gameId, const GameStats& stats);
+    void updateGameStats(const GameStats& stats);
     
 private:
-    void updateGameStatsAsync(Guid gameId, const GameStats& stats);
+    void updateGameStatsAsync( const GameStats& stats);
     
     //Get Unfullfilled Exchanges
 public:
-    void getUnFullFilledExchanges(Guid gameId);
+    void getUnFullFilledExchanges();
     
 private:
-    void getUnFullFilledExchangesAsync(Guid gameId);
+    void getUnFullFilledExchangesAsync();
     
     //Fullfilled Exchanges
 public:
-    void fullFillExchange(Guid gameId, string transactionId);
+    void fullFillExchange(string transactionId);
     
 private:
-    void fullFillExchangeAsync(Guid gameId, string transactionId);
+    void fullFillExchangeAsync(string transactionId);
     
     //Reject Exchanges
 public:
-    void rejectExchange(Guid gameId, string transactionId);
+    void rejectExchange(string transactionId);
     
 private:
-    void rejectExchangeAsync(Guid gameId, string transactionId);
+    void rejectExchangeAsync(string transactionId);
    
     //Update External Exchange
 public:
-    void updateExternalExchange(Guid gameId, Guid transactionId, string exchangeOptionIdentifier); 
+    void updateExternalExchange(Guid transactionId, string exchangeOptionIdentifier);
     
 private:
-    void updateExternalExchangeAsync(Guid gameId, Guid transactionId, string exchangeOptionIdentifier);
+    void updateExternalExchangeAsync(Guid transactionId, string exchangeOptionIdentifier);
 
 public:
-    void unBindOauth(SocialPlatforms platform, string token, Guid gameId);
+    void unBindOauth(SocialPlatforms platform, string token);
     
 private:
-    void unBindOauthAsync(SocialPlatforms platform, string token, Guid gameId);
+    void unBindOauthAsync(SocialPlatforms platform, string token);
     
 
 };

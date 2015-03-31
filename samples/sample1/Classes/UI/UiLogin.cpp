@@ -107,7 +107,7 @@ void UiLogin::initWith(){
                                 }
                             };
 
-                            GoPlaySDK::GoPlaySdk::GetInstance()->registerWith( name, pass, GoPlaySDK::Guid(GAME_ID));
+                            GoPlaySDK::GoPlaySdk::GetInstance()->registerWith( name, pass);
                         });
                     }else{
                         this->decreaseLoading();
@@ -124,7 +124,7 @@ void UiLogin::initWith(){
                     uiExchange->release();
                 }
             };
-            GoPlaySDK::GoPlaySdk::GetInstance()->login(GoPlaySDK::SocialPlatforms::FaceBook, FacebookAgent::getInstance()->getAccessToken(), GoPlaySDK::Guid(GAME_ID));
+            GoPlaySDK::GoPlaySdk::GetInstance()->login(GoPlaySDK::SocialPlatforms::FaceBook, FacebookAgent::getInstance()->getAccessToken());
         });
     };
 #endif
@@ -264,7 +264,7 @@ void UiLogin::requestRegister(const std::string& name, const std::string& pass, 
         GoPlaySDK::GoPlaySdk::GetInstance()->setRequireOAuthData(nullptr);
     }
     
-    GoPlaySDK::GoPlaySdk::GetInstance()->registerWith( name, pass, GoPlaySDK::Guid(GAME_ID));
+    GoPlaySDK::GoPlaySdk::GetInstance()->registerWith( name, pass);
 }
 
 void UiLogin::requestLogin(const std::string& name, const std::string& pass){
@@ -297,7 +297,7 @@ void UiLogin::requestLogin(const std::string& name, const std::string& pass){
         GoPlaySDK::GoPlaySdk::GetInstance()->setRequireOAuthData(nullptr);
     }
     
-    GoPlaySDK::GoPlaySdk::GetInstance()->login( name, pass, GoPlaySDK::Guid(GAME_ID));
+    GoPlaySDK::GoPlaySdk::GetInstance()->login( name, pass);
 }
 
 void UiLogin::saveAcount(){
