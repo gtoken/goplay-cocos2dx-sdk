@@ -461,7 +461,7 @@ GoPlaySDK::GoPlaySdk::GetInstance()->rejectExchange (transactionId);
 
 | Paramter      | Type          | Notes              
 | ------------- |---------------| -------------------
-| transaction_id| uuid          | Required Parameter.
+| transactionId | uuid          | Required Parameter.
 
 ##### Output (RejectExchangeResult):
 
