@@ -81,7 +81,7 @@ void GoPlaySdk::logout()
 
 
 void GoPlaySdk::logoutAsync(){
-    _session = nullptr;
+    _session = "";
     
 }
 

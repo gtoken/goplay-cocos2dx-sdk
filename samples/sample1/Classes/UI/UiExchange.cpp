@@ -103,7 +103,7 @@ void UiExchange::initWith(){
                                    string parse = "TransactionID = " + (*exchange).getTransactionId().ToString() +
                                    "\n ExchangeOptionID = " + (*exchange).getExchangeOptionId() +
                                    "\n ExchangeOptionType = " + GoPlaySDK::ExchangeOptionToString[(*exchange).getExchangeType()] +
-                                   "\n Gtoken Value = " + StringUtils::format("%lf", (*exchange).getTokenValue()).c_str() ;
+                                   "\n Gtoken Value = " + StringUtils::format("%lf", (*exchange).getGoPlayTokenValue()).c_str() ;
                                    
                                    parseArray += parse + "\n ========== \n";
                                }
@@ -170,7 +170,7 @@ void UiExchange::initWith(){
                                                    string parse = "TransactionID = " + exchange.getTransactionId().ToString() +
                                                    "\n ExchangeOptionID = " + exchange.getExchangeOptionId() +
                                                    "\n ExchangeOptionType = " + GoPlaySDK::ExchangeOptionToString[exchange.getExchangeType()] +
-                                                   "\n Gtoken Value = " + StringUtils::format("%lf", exchange.getTokenValue()).c_str() ;
+                                                   "\n Gtoken Value = " + StringUtils::format("%lf", exchange.getGoPlayTokenValue()).c_str() ;
                                                    this->setDebugString(parse);
                                                }else{
                                                    this->setDebugString(r->getMessage());
