@@ -45,7 +45,7 @@ void GoPlaySdk::registerAsync(string userName,
     f.addFieldIfValid(Constants::FIELD_REFERRAL_CODE, referal);
     
     string url = UrlExtension::ToURL(URLs::ACTION_REGISTER, _useLiveServer);
-    WWW::CREATE( url, f, [&, Guid(GAME_ID)](WWW* www){
+    WWW::CREATE( url, f, [&](WWW* www){
         // Compose the Result //
         RegisterResult * result = new RegisterResult();
         result->tryParse(www);
@@ -101,7 +101,7 @@ void GoPlaySdk::loginAsync(string userName, string password){
     f.addField(Constants::FIELD_GAME_ID, Guid(GAME_ID).ToString());
     string url = UrlExtension::ToURL(URLs::ACTION_LOGIN, _useLiveServer);
     
-    WWW::CREATE(url, f, [&, Guid(GAME_ID)](WWW* www){
+    WWW::CREATE(url, f, [&](WWW* www){
         // Compose the Result //
         LoginResult * result = new LoginResult();
         result->tryParse(www);
