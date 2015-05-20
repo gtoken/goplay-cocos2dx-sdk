@@ -55,8 +55,8 @@ For a full listing of the source code sample, please refer to the sample code in
 ### <a name='api_calls'></a>API Calls
 #### <a name='login'></a>Login
 ```c++
-void GoPlaySdk::login(string userName, string password, Guid gameId)
-void GoPlaySdk::login(SocialPlatforms platform, string token, Guid gameId);
+void GoPlaySdk::login(string userName, string password)
+void GoPlaySdk::login(SocialPlatforms platform, string token);
 ```
 
 This method performs a log in to GoPlay using username and password. An user account must be available before calling this method.
