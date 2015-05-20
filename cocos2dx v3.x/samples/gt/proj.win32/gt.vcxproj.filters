@@ -1,0 +1,168 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="win32">
+      <UniqueIdentifier>{84a8ebd7-7cf0-47f6-b75e-d441df67da40}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Classes">
+      <UniqueIdentifier>{bb6c862e-70e9-49d9-81b7-3829a6f50471}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Classes\UI">
+      <UniqueIdentifier>{125b24c9-49ae-44a0-9223-4b9b641547ab}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Classes\UI\Common">
+      <UniqueIdentifier>{68cb8dca-7325-41a9-98b2-2f48d8aa7eb2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Classes\GoPlaySDK">
+      <UniqueIdentifier>{6ee8ede0-4053-426a-8f79-d351779d8f92}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Classes\GoPlaySDK\rapidjson">
+      <UniqueIdentifier>{0acb9eba-7582-45c7-bbf6-fdbf79d01307}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Classes\GoPlaySDK\rapidjson\internal">
+      <UniqueIdentifier>{c8ec50b4-2a5f-46ae-b9e6-e9a233e690be}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="main.cpp">
+      <Filter>win32</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\AppDelegate.cpp">
+      <Filter>Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\FacebookAgent.cpp">
+      <Filter>Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\UI\UiExchange.cpp">
+      <Filter>Classes\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\UI\UiLogin.cpp">
+      <Filter>Classes\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\UI\Common\AvaButton.cpp">
+      <Filter>Classes\UI\Common</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\UI\Common\AvaFrame.cpp">
+      <Filter>Classes\UI\Common</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\UI\Common\Scale9SpriteEx.cpp">
+      <Filter>Classes\UI\Common</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\UI\Common\TextBoxEx.cpp">
+      <Filter>Classes\UI\Common</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\UI\Common\Utilities.cpp">
+      <Filter>Classes\UI\Common</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\GoPlaySDK\Constants.cpp">
+      <Filter>Classes\GoPlaySDK</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\GoPlaySDK\Extensions.cpp">
+      <Filter>Classes\GoPlaySDK</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\GoPlaySDK\GoPlaySdk.cpp">
+      <Filter>Classes\GoPlaySDK</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\GoPlaySDK\Results.cpp">
+      <Filter>Classes\GoPlaySDK</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="main.h">
+      <Filter>win32</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\AppDelegate.h">
+      <Filter>Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\AppMacros.h">
+      <Filter>Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\FacebookAgent.h">
+      <Filter>Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\UI\UIConfig.h">
+      <Filter>Classes\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\UI\UiExchange.h">
+      <Filter>Classes\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\UI\UiLogin.h">
+      <Filter>Classes\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\UI\Common\AppMacros.h">
+      <Filter>Classes\UI\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\UI\Common\AvaButton.h">
+      <Filter>Classes\UI\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\UI\Common\AvaFrame.h">
+      <Filter>Classes\UI\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\UI\Common\ResourceCommon.h">
+      <Filter>Classes\UI\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\UI\Common\Scale9SpriteEx.h">
+      <Filter>Classes\UI\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\UI\Common\TextBoxEx.h">
+      <Filter>Classes\UI\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\UI\Common\Utilities.h">
+      <Filter>Classes\UI\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GoPlaySDK\CommonTypes.h">
+      <Filter>Classes\GoPlaySDK</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GoPlaySDK\Constants.h">
+      <Filter>Classes\GoPlaySDK</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GoPlaySDK\Extensions.h">
+      <Filter>Classes\GoPlaySDK</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GoPlaySDK\GoPlaySdk.h">
+      <Filter>Classes\GoPlaySDK</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GoPlaySDK\GoPlaySDKConfig.h">
+      <Filter>Classes\GoPlaySDK</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GoPlaySDK\GoPlaySDkMacros.h">
+      <Filter>Classes\GoPlaySDK</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GoPlaySDK\Results.h">
+      <Filter>Classes\GoPlaySDK</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GoPlaySDK\Singleton.h">
+      <Filter>Classes\GoPlaySDK</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GoPlaySDK\rapidjson\document.h">
+      <Filter>Classes\GoPlaySDK\rapidjson</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GoPlaySDK\rapidjson\filestream.h">
+      <Filter>Classes\GoPlaySDK\rapidjson</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GoPlaySDK\rapidjson\prettywriter.h">
+      <Filter>Classes\GoPlaySDK\rapidjson</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GoPlaySDK\rapidjson\rapidjson.h">
+      <Filter>Classes\GoPlaySDK\rapidjson</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GoPlaySDK\rapidjson\reader.h">
+      <Filter>Classes\GoPlaySDK\rapidjson</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GoPlaySDK\rapidjson\stringbuffer.h">
+      <Filter>Classes\GoPlaySDK\rapidjson</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GoPlaySDK\rapidjson\writer.h">
+      <Filter>Classes\GoPlaySDK\rapidjson</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GoPlaySDK\rapidjson\internal\pow10.h">
+      <Filter>Classes\GoPlaySDK\rapidjson\internal</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GoPlaySDK\rapidjson\internal\stack.h">
+      <Filter>Classes\GoPlaySDK\rapidjson\internal</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GoPlaySDK\rapidjson\internal\strfunc.h">
+      <Filter>Classes\GoPlaySDK\rapidjson\internal</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
