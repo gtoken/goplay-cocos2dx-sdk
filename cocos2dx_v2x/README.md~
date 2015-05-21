@@ -5,9 +5,9 @@ Version 1.0
 This tutorial goes through the step-by-step instructions to integrate the Login feature to a Cocos2d-X game project.
 
 ### Requirements
-Cocos2D-X 3.0 or later
+Cocos2D-X 2.0 or later
 ### Step 1: Import plugin
-Download the GoPlaySDK and copy the content in folder Classes and paste it to the Cocos2d-X project. 
+Download the GoPlaySDK and copy the content in folder ``src`` and paste it to the Cocos2d-X project. 
 ### Step 2: Determine to connect to which server
 GoPlay provides dev server and production server. To setup the Live server build or Test server build, configure the Boolean variable `UseLiveServer` in `GoPlaySdk.h`. Set it to `True` to use production server, `False` for dev server.
 ```c++
