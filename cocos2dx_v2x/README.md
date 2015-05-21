@@ -74,19 +74,32 @@ void GoPlaySdk::login(string userName, string password)
 void GoPlaySdk::login(SocialPlatforms platform, string token);
 ```
 
-This method performs a log in to GoPlay using username and password. An user account must be available before calling this method.
-A callback function will be triggered when server responses.
+This method perform a log-in to GoPlay using a username and password. A user account must be available before calling this method.
+A callback function will be triggered when server callbacks.
+If user login via facebook account, the server will bind the user with the facebook account for future auto-login.
 
-If user logs in via facebook account, the server will bind the user with the facebook account for future auto-login.
 
-```c++
+
 Example:
-
-GoPlaySDK:: GoPlaySdk::GetInstance()->onLogin = [&](GoPlaySDK::IResult * r) {
-  //Your code here
+First, setup a callback function for the API call
+```c++
+void ClassName::onResponse(GoPlaySDK::IResult *result)  {
+  //TODO
 }
+```
 
-GoPlaySDK:: GoPlaySdk::GetInstance()->login(username,password GoPlaySDK::Guid(Id)); 
+Then, create a response handler and hook it up with the callback
+```c++
+GoPlaySDK::ResponseHandler*handler=new GoPlaySDK::ResponseHandler(); 
+handler->target = this;
+handler->callback= callfuncResult_selector(ClassName::onResponse);
+GoPlaySDK::GoPlaySdk::GetInstance()->setOnLoginHandler(handler);
+```
+Lastly, call the API
+```c++
+GoPlaySDK:: GoPlaySdk::
+GetInstance()->login(username,password); 
+
 ```
 
 ##### Input:
@@ -118,17 +131,30 @@ GoPlaySDK:: GoPlaySdk::GetInstance()->login(username,password GoPlaySDK::Guid(Id
 void GoPlaySdk::registerWith(string userName, string password, string email, string nickName, Gender gender, string referal)
 ```
 
-This method is used to explicitly register a new customer account. 
+This method is used to explicitly register a new customer account. 
 A callback function will be triggered when server callbacks.
 If user login via facebook account, the server will bind the user with the facebook account for future auto-login.
 
-```c++
+
 Example:
-GoPlaySDK:: GoPlaySdk::GetInstance()->onRegister = [&](GoPlaySDK::IResult * r)
-{
-  //Your code here
-}
+First, setup a callback function for the API call
+
+```c++
+   void ClassName::onResponse(GoPlaySDK::IResult *result)  {
+      //TODO
+    }
+```
+Then, create a response handler and hook it up with the callback
+```c++
+GoPlaySDK::ResponseHandler*handler=new GoPlaySDK::ResponseHandler(); 
+handler->target = this;
+handler->callback= callfuncResult_selector(ClassName::onResponse);
+GoPlaySDK::GoPlaySdk::GetInstance()->setOnRegisterHandler (handler);
+```
+Lastly, call the API
+```c++
 GoPlaySDK:: GoPlaySdk::GetInstance()->registerWith( username,password,nickname,gender,referral);
+
 ```
 
 ##### Input:
@@ -169,9 +195,9 @@ void GoPlaySdk::logout()
 ```
 
 Call this method to terminate current session.
+Example:
 
 ```c++
-Example:
   GoPlaySDK:: GoPlaySdk::logout()
 ```
 
@@ -184,13 +210,23 @@ void GoPlaySdk::getProfile()
 Call this method to retrieve the profile of a user. 
 A callback function will be triggered when server callbacks. 
 
-```c++
 Example:
-GoPlaySDK:: GoPlaySdk::GetInstance()->onGetProfile = [&](GoPlaySDK::IResult * r)
-{
-  //Your code here
-} 
-GoPlaySDK:: GoPlaySdk:: GetInstance()->getProfile(); 
+First, setup a callback function for the API call
+```c++
+void ClassName::onResponse(GoPlaySDK::IResult *result)  {
+   //TODO
+}
+```
+Then, create a response handler and hook it up with the callback
+```c++
+GoPlaySDK::ResponseHandler*handler=new GoPlaySDK::ResponseHandler(); 
+handler->target = this;
+handler->callback= callfuncResult_selector(ClassName::onResponse);
+GoPlaySDK::GoPlaySdk::GetInstance()->setOnGetProfileHandler (handler);
+```
+Lastly, call the API
+```c++
+GoPlaySDK:: GoPlaySdk::GetInstance()->getProfile();
 ```
 
 ##### Input:
@@ -223,15 +259,25 @@ void GoPlaySdk::editProfile(string email, string nickName, Gender gender)
 
 Call this method to updates the profile of a user. Parameters may be omitted, and those fields will be unchanged.
 A callback function will be triggered when server callbacks. 
+Example:
+First, setup a callback function for the API call
 
 ```c++
-Example:
-GoPlaySDK::GoPlaySdk::GetInstance()->onEditProfile = [&](GoPlaySDK::IResult * r)
-{
-  //Your code here
-} 
-GoPlaySDK:: GoPlaySdk::
-GetInstance()->editProfile( mail,nickname,gender);
+void ClassName::onResponse(GoPlaySDK::IResult *result)  {
+  //TODO
+}
+```
+Then, create a response handler and hook it up with the callback
+```c++
+GoPlaySDK::ResponseHandler*handler=new GoPlaySDK::ResponseHandler(); 
+handler->target = this;
+handler->callback= callfuncResult_selector(ClassName::onResponse);
+GoPlaySDK::GoPlaySdk::GetInstance()->setOnEditProfile (handler);
+```
+
+Lastly, call the API
+```c++
+GoPlaySDK::GoPlaySdk::GetInstance()->editProfile(email,nickname,gender); 
 ```
 
 ##### Input:
@@ -265,13 +311,24 @@ void GoPlaySdk::getProgress(bool sendData)
 Call this method to retrieve game progress directly from GoPlay server. The progress is saved in a string field, either as xml or json. The progress is saved together with a meta field. 
 
 A callback function will be triggered when server callbacks. 
+Example:
+First, setup a callback function for the API call
+
 
 ```c++
-Example:
-GoPlaySDK::GoPlaySdk::GetInstance()->onGetProgress = [&](GoPlaySDK::IResult * r)
-{
-  //Your code here
-} 
+void ClassName::onResponse(GoPlaySDK::IResult *result)  {
+  //TODO
+}
+```
+Then, create a response handler and hook it up with the callback
+```c++
+GoPlaySDK::ResponseHandler*handler=new GoPlaySDK::ResponseHandler(); 
+handler->target = this;
+handler->callback= callfuncResult_selector(ClassName::onResponse);
+GoPlaySDK::GoPlaySdk::GetInstance()->setOnGetProgress (handler);
+```
+Lastly, call the API
+```c++
 GoPlaySDK::GoPlaySdk::GetInstance()->getProgress(true); 
 ```
 
@@ -306,13 +363,22 @@ void GoPlaySdk::saveProgress(string data,string meta)
 Call this method to save game progress to GoPlay server. 
 
 A callback function will be triggered when server callbacks. 
-
-```c++
 Example:
-GoPlaySDK::GoPlaySdk::GetInstance()->onSaveProgress = [&](GoPlaySDK::IResult * r)
-{
-  //Your code here
-} 
+First, setup a callback function for the API call
+```c++
+void ClassName::onResponse(GoPlaySDK::IResult *result)  {
+  //TODO
+}
+```
+Then, create a response handler and hook it up with the callback
+```c++
+GoPlaySDK::ResponseHandler*handler=new GoPlaySDK::ResponseHandler(); 
+handler->target = this;
+handler->callback= callfuncResult_selector(ClassName::onResponse);
+GoPlaySDK::GoPlaySdk::GetInstance()->setOnSaveProgress(handler);
+```
+Lastly, call the API
+```c++
 GoPlaySDK::GoPlaySdk::GetInstance()->saveProgress(data,meta); 
 ```
 
@@ -320,7 +386,7 @@ GoPlaySDK::GoPlaySdk::GetInstance()->saveProgress(data,meta);
 
 | Paramter      | Type          | Notes              
 | ------------- |---------------| -------------------
-| data          | string        |
+| data          | string        | Data to be sent to server
 | meta          | string        |
 
 ##### Output (GetProgressResult):
@@ -345,16 +411,24 @@ void GoPlaySdk::updateGameStats(GameStats stats)
 
 Call this method in game client to save game stats directly to GoPlay server. The stat is saved as a string.
 A callback function will be triggered when server callbacks. 
-
-```c++
 Example:
-GoPlaySDK::GoPlaySdk::GetInstance()->onUpdateGameStats=[&]( GoPlaySDK::IResult * r)
-{
-  //Your code here
-} 
+First, setup a callback function for the API call
+```c++
+void ClassName::onResponse(GoPlaySDK::IResult *result)  {
+  //TODO
+}
+```
+Then, create a response handler and hook it up with the callback
+```c++
+GoPlaySDK::ResponseHandler*handler=new GoPlaySDK::ResponseHandler(); 
+handler->target = this;
+handler->callback= callfuncResult_selector(ClassName::onResponse);
+GoPlaySDK::GoPlaySdk::GetInstance()->setOnUpdateGameStats (handler);
+```
+Lastly, call the API
+```c++
 GoPlaySDK::GoPlaySdk::GetInstance()->updateGameStats(stats);
 ```
-
 ##### Input:
 
 | Paramter      | Type          | Notes              
@@ -384,16 +458,24 @@ void GoPlaySdk::getUnFullFilledExchanges()
 
 Returns a list of unfulfilled exchanges made on GoPlay website
 A callback function will be triggered when server callbacks. 
-
-```c++
 Example:
-GoPlaySDK::GoPlaySdk::GetInstance()->onGetUnFullFilledExchanges =[&]( GoPlaySDK::IResult * r)
-{
-  //Your code here
-} 
+First, setup a callback function for the API call
+```c++
+void ClassName::onResponse(GoPlaySDK::IResult *result)  {
+  //TODO
+}
+```
+Then, create a response handler and hook it up with the callback
+```c++
+GoPlaySDK::ResponseHandler*handler=new GoPlaySDK::ResponseHandler(); 
+handler->target = this;
+handler->callback= callfuncResult_selector(ClassName::onResponse);
+GoPlaySDK::GoPlaySdk::GetInstance()->setOnGetUnFullFilledExchanges (handler);
+```
+Lastly, call the API
+```c++
 GoPlaySDK::GoPlaySdk::GetInstance()->getUnFullFilledExchanges (); 
 ```
-
 ##### Input:
 
 | Paramter      | Type          | Notes              
@@ -423,16 +505,24 @@ void GoPlaySdk::fullFillExchange(Guid transactionId)
 
 Call this method to fulfill an exchange made on GoPlay website.
 A callback function will be triggered when server callbacks. 
-
-```c++
 Example:
-GoPlaySDK::GoPlaySdk::GetInstance()->onFullFillExchange =[&]( GoPlaySDK::IResult * r)
-{
-  //Your code here
-} 
+First, setup a callback function for the API call
+```c++
+void ClassName::onResponse(GoPlaySDK::IResult *result)  {
+  //TODO
+}
+```
+Then, create a response handler and hook it up with the callback
+```c++
+GoPlaySDK::ResponseHandler*handler=new GoPlaySDK::ResponseHandler(); 
+handler->target = this;
+handler->callback= callfuncResult_selector(ClassName::onResponse);
+GoPlaySDK::GoPlaySdk::GetInstance()->setOnFullFillExchange (handler);
+```
+Lastly, call the API
+```c++
 GoPlaySDK::GoPlaySdk::GetInstance()->fullFillExchange(transactionId);
 ```
-
 ##### Input:
 
 | Paramter      | Type          | Notes              
@@ -461,17 +551,26 @@ GoPlaySDK::GoPlaySdk::GetInstance()->fullFillExchange(transactionId);
 void GoPlaySdk::rejectExchange(string transactionId)
 ```
 
-Reject an exchange made on GoPlay website. The rejected exchange’s status will be changed to failure and the user’s balance is redeemed.
+Reject an exchange made on GoPlay website. The rejected exchange’s status will be changed to failure and the user’s balance is redeemed.
 
-```c++
 Example:
-GoPlaySDK::GoPlaySdk::GetInstance()->onRejectExchange =[&]( GoPlaySDK::IResult * r)
-{
-  //Your code here
-} 
+First, setup a callback function for the API call
+```c++
+void ClassName::onResponse(GoPlaySDK::IResult *result)  {
+  //TODO
+}
+```
+Then, create a response handler and hook it up with the callback
+```c++
+GoPlaySDK::ResponseHandler*handler=new GoPlaySDK::ResponseHandler(); 
+handler->target = this;
+handler->callback= callfuncResult_selector(ClassName::onResponse);
+GoPlaySDK::GoPlaySdk::GetInstance()->setOnRejectExchange (handler);
+```
+Lastly, call the API
+```c++
 GoPlaySDK::GoPlaySdk::GetInstance()->rejectExchange (transactionId); 
 ```
-
 ##### Input:
 
 | Paramter      | Type          | Notes              
