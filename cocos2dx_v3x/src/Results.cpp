@@ -121,6 +121,10 @@ UserProfile UserProfile::Create(const JSONObject& json)
     
     user.setGoPlayToken(atof(json.getNestedField(Constants::RESPONSE_PROFILE,Constants::RESPONSE_GOPLAY_TOKEN).c_str()));
     
+    user.setFreeGoPlayToken(atof(json.getNestedField(Constants::RESPONSE_PROFILE,Constants::RESPONSE_FREE_GOPLAY_TOKEN).c_str()));
+    
+    user.setBalance(atof(json.getNestedField(Constants::RESPONSE_PROFILE,Constants::RESPONSE_GTOKEN).c_str()));
+    
     user.setFreeBalance(atof(json.getNestedField(Constants::RESPONSE_PROFILE,Constants::RESPONSE_FREE_TOKEN).c_str()));
     
     
@@ -141,7 +145,7 @@ Exchange Exchange::Create(const JSONObject& json)
    
     ex.setGoPlayTokenValue(atof(json.getNestedField(Constants::RESPONSE_EXCHANGE,Constants::RESPONSE_GOPLAY_TOKEN_VALUE).c_str()));
 
-    ex.setGoPlayTokenValue(atof(json.getNestedField(Constants::RESPONSE_EXCHANGE,Constants::RESPONSE_GTOKEN_VALUE).c_str()));
+    ex.setTokenValue(atof(json.getNestedField(Constants::RESPONSE_EXCHANGE,Constants::RESPONSE_GTOKEN_VALUE).c_str()));
     
     ex.setQuantity(atoi(json.getNestedField(Constants::RESPONSE_EXCHANGE,Constants::RESPONSE_QUANTITY).c_str()));
     
@@ -167,7 +171,7 @@ Exchanges Exchanges::Create(const JSONObject& json)
         
         ex.setGoPlayTokenValue(exchangeArray[i][Constants::RESPONSE_GOPLAY_TOKEN_VALUE.c_str()].GetDouble());
         
-        ex.setGoPlayTokenValue(exchangeArray[i][Constants::RESPONSE_GTOKEN_VALUE.c_str()].GetDouble());
+        ex.setTokenValue(exchangeArray[i][Constants::RESPONSE_GTOKEN_VALUE.c_str()].GetDouble());
         
         ex.setQuantity(exchangeArray[i][Constants::RESPONSE_QUANTITY.c_str()].GetDouble());
                 
