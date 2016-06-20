@@ -30,7 +30,7 @@ Open the project and search for ``GoPlaySDKConfig.h``. ``Game_ID`` is defined at
 ### Step 4: Call Login API and get a response
 GoPlay SDK uses a funciton Callback mechanism. Each API call is a HTTP asynchronous web request. When a response callback is available, a callback function will be called. Client application can easily subscribe to these callbacks.
 ```c++
-GoPlaySDK:: GoPlaySdk::GetInstance()->onLogin = [&](GToken::IResult * r) {
+GoPlaySDK:: GoPlaySdk::GetInstance()->onLogin = [&](GoPlaySDK::IResult * r) {
   //Your code here
 } 
 ```
